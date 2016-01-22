@@ -1,0 +1,22 @@
+<template name="authJoin">
+    <div class="animated bounceIn">
+  <!-- new -->
+     <form class="form-signin">  
+        <h2 class="form-signin-heading">Join now</h2>
+        <div class="form-group {{errorClass 'email'}}">
+            <label for="email" class="control-label">Email address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" autofocus>
+        </div>
+        <div class="form-group {{errorClass 'password'}}">
+            <label for="password" class="control-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group {{errorClass 'confirm'}}">
+            <label for="confirm" class="control-label">Confirm password</label>
+            <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm password">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Join now</button>
+        <a href="{{pathFor 'authLogin'}}" class="link-auth-alt">Already have an account? Sign in.</a>
+      </form>   
+    </div>
+</template>

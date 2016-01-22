@@ -1,0 +1,20 @@
+<template name="mainLayout">
+ <div class="container">
+    <header>
+        <!-- include header template -->
+        {{> header}}
+    </header>
+    <div id="main">
+        {{> sAlert}}
+        <!--<ul>
+            <li><a href="{{pathFor 'authJoin'}}"> Join</a></li>
+            <li><a href="{{pathFor 'authLogin'}}"> Login</a></li>
+        </ul>-->
+        <!-- include dynamic template -->
+        {{> yield}}
+    </div>
+    <footer>
+        {{> footer}}
+    </footer>
+ </div>
+</template>
