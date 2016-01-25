@@ -2,6 +2,14 @@
     <div class="animated bounceIn">
     <form class="form-signin">  
         <h2 class="form-signin-heading">Please sign in</h2>
+        {{#if errorMessages}}
+            <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{#each errorMessages}}        
+                    {{this}}
+            {{/each}}
+            </div>
+        {{/if}}
         <div class="form-group {{errorClass 'email'}}">
         <label for="email" class="control-label">Email address</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="Email address" autofocus>

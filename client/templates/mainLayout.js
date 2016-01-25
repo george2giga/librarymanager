@@ -29,4 +29,6 @@ Meteor.startup(function(){
         //     /* Code here will be executed once the alert closes. */
         // }
     }); 
+    //configure masonry
+    
 });

@@ -1,7 +1,12 @@
 /// <reference path="../typings/meteor/meteor.d.ts"/>
 
 Meteor.methods({
-    'releaseBook': function(bookId){
+    'reserveBook': function(reservation){
+        reservation.userId = Meteor.userId();        
+        Reservations.insert(reservation);                               
+    },
+    
+    'releaseBook': function(reservationId){
         // var reservations = Books.find({"_id": bookId, "reservations.userId" : Meteor.userId()}).reservations;
         // for(var reservation in reservations)
         // {
@@ -21,10 +26,8 @@ Meteor.methods({
         // },{multi:true});
         
         //console.log(Books.find().fetch());
-        
-        var reservations = Books.find({"_id": bookId, "reservations.userId": Meteor.userId()}, {"reservations" : 1}).fetch();
-        debugger;        
-        
-        
+        debugger;
+        Reservations.update({"_id": reservationId}, {$set: {"endDate" : Date.now()} });
+        //debugger;     
     }
 })

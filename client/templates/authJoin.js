@@ -1,14 +1,16 @@
 /// <reference path="../../typings/meteor/meteor.d.ts"/>
 
 var ERRORS_KEY = 'joinErrors';
+var ERRORS_ACCOUNT_KEY = "accountErrors";
 
 Template.authJoin.onCreated(function(){
    Session.set(ERRORS_KEY, {}); 
+   Session.set(ERRORS_ACCOUNT_KEY, {});  
 });
 
 Template.authJoin.helpers({
     errorMessages: function(){
-        return _.values(Session.get(ERRORS_KEY));
+        return _.values(Session.get(ERRORS_ACCOUNT_KEY));
     },
     errorClass: function(key) {
         return Session.get(ERRORS_KEY)[key] && 'has-error';
@@ -53,7 +55,7 @@ Template.authJoin.events({
             password : password
         }, function(error){
         if(error){
-            return Session.set(ERRORS_KEY, {'none': error.reason});
+            return Session.set(ERRORS_ACCOUNT_KEY, {'none': error.reason});
         }
             Router.go('/'); 
         });

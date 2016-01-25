@@ -8,12 +8,12 @@
             </p>
         </div>-->
         <div class="row">
-            {{#each books}}
+            {{#each reservations}}
             <div class="col-lg-4 animated bounceIn">
-                <h2>{{title}}</h2>
-                <h3>{{author}}</h3>
-                <p>{{description}}</p>
-                <p><img src="{{cover_url}}" alt="{{title}}"/></p>
+                <h2>{{book.title}}</h2>
+                <h3>{{book.author}}</h3>
+                <p>{{book.description}}</p>
+                <p><img src="/images/{{book.cover_url}}" alt="{{book.title}}"/></p>
                 <button class="btn btn-lg btn-primary btn-block returnBook" type="button">Return</button>
             </div>
             {{/each}}
