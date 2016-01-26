@@ -1,13 +1,24 @@
 /// <reference path="../../typings/meteor/meteor.d.ts"/>
 
-// if (Meteor.isClient) {
-//     //console.log(Books.find().fetch());
-//     console.log("CIAO");
-// }
+var SEARCH_PARAMS = 'searchParams';
 
 Template.book.helpers({
     books: function(){
-        return Books.find();
+        var filter = Session.get(SEARCH_PARAMS) || "";
+        console.log(filter);
+        var result = {};
+        if(filter != "")
+        {
+            var search = new RegExp(filter, 'i');
+            result = Books.find({"title" : search });
+            //$('.booksMain').masonry();
+        }
+        else
+        {
+            result = Books.find();
+        }
+                
+        return result;        
     }   
 });
 
@@ -25,15 +36,28 @@ Template.book.events({
         // sAlert.info('bookReserved');   
         // console.log(Books.find().fetch());         
          Meteor.call('reserveBook', reservation);
-    }
+    }   
 })
 
 
 Template.book.onRendered(function(){
-    var booksMain = $('.booksMain');
-    booksMain.imagesLoaded(function(){
-        booksMain.masonry({
-            itemSelector: ".bookItem"            
-        });        
-    });
+    // var booksMain = $('.booksMain');
+    // booksMain.imagesLoaded(function(){
+    //     booksMain.masonry({
+    //         itemSelector: ".bookItem",
+    //         layoutMode : 'fitRows'
+    //     });        
+    // });    
+    
 });
+
+// Tracker.autorun(function () {
+//   Session.get(SEARCH_PARAMS)
+//     var booksMain = $('.booksMain');
+//     booksMain.imagesLoaded(function(){
+//         booksMain.masonry({
+//             itemSelector: ".bookItem"
+//         });        
+//     });    
+// });
+

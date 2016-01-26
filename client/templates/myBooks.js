@@ -27,10 +27,10 @@ Template.myBooks.events({
 })
 
 Template.myBooks.onRendered(function(){
-    var booksMain = $('.mybooksMain');
-    booksMain.imagesLoaded(function(){
-        booksMain.masonry({
-            itemSelector: ".mybookItem"            
-        });        
-    });
+    // var booksMain = $('.mybooksMain');
+    // booksMain.imagesLoaded(function(){
+    //     booksMain.masonry({
+    //         itemSelector: ".mybookItem"            
+    //     });        
+    // });
 });
