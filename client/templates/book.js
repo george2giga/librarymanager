@@ -1,63 +1,39 @@
 /// <reference path="../../typings/meteor/meteor.d.ts"/>
 
 var SEARCH_PARAMS = 'searchParams';
+var NOTIFICATION_ALERT = 'notificationAlert';
+
+
+Template.book.onCreated(function(){
+   Session.set(SEARCH_PARAMS, null); 
+});
+
 
 Template.book.helpers({
     books: function(){
-        var filter = Session.get(SEARCH_PARAMS) || "";
-        console.log(filter);
-        var result = {};
-        if(filter != "")
-        {
-            var search = new RegExp(filter, 'i');
-            result = Books.find({"title" : search });
-            //$('.booksMain').masonry();
-        }
-        else
-        {
-            result = Books.find();
-        }
-                
+        var filter = Session.get(SEARCH_PARAMS) || null;
+        var result = filter ? Books.find({"title" : new RegExp(filter, 'i') }) : Books.find();                
         return result;        
-    }   
+    }
 });
 
 Template.book.events({
     "click .reserve": function(){
         var currentUserId = Meteor.userId();
-        //http://stackoverflow.com/questions/21030922/meter-js-update-array-document-in-mini-mongo
         var reservation = {
             //userId : currentUserId,
             bookId : this._id,
-            createdDate : Date.now(),
+            createdDate : new Date(),
             endDate : null
         }
-        // Books.update(this._id, {$push: {"reservations":reservation}});   
-        // sAlert.info('bookReserved');   
-        // console.log(Books.find().fetch());         
+
          Meteor.call('reserveBook', reservation);
-    }   
-})
-
-
-Template.book.onRendered(function(){
-    // var booksMain = $('.booksMain');
-    // booksMain.imagesLoaded(function(){
-    //     booksMain.masonry({
-    //         itemSelector: ".bookItem",
-    //         layoutMode : 'fitRows'
-    //     });        
-    // });    
-    
+         var notification = this.title + " reserved";
+         sAlert.info(notification);
+    },
+    "keyup #searchBooks": function (evt,template) {
+        var searchValue = template.find("#searchBooks").value;
+        Session.set(SEARCH_PARAMS, searchValue);        
+     }   
 });
-
-// Tracker.autorun(function () {
-//   Session.get(SEARCH_PARAMS)
-//     var booksMain = $('.booksMain');
-//     booksMain.imagesLoaded(function(){
-//         booksMain.masonry({
-//             itemSelector: ".bookItem"
-//         });        
-//     });    
-// });
 

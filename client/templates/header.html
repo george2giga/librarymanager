@@ -8,27 +8,27 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./">Project name</a>
+            <a class="navbar-brand" href="./">Library Manager</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>            
+              <li><a href="{{pathFor 'whoGotWhat'}}">Who got what</a></li>
+              <li><a href="{{pathFor 'stats'}}">Stats</a></li>                        
             </ul>      
             <ul class="nav navbar-nav navbar-right">              
               {{#if currentUser}}
-                <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                <li><a href="{{pathFor 'myBooks'}}">My books <span class="sr-only">(current)</span></a></li>
+                <!--<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>-->
+                <li><a href="{{pathFor 'myBooks'}}">My books <span class="badge reservations">{{myReservationsCount}}</span></a></li>
                 <li><a href="#" class="logout">Logout</a></li>               
               {{else}}
                   <li><a href="{{pathFor 'authLogin'}}">Login</a></li>
                 <li><a href="{{pathFor 'authJoin'}}">Join</a></li>
               {{/if}}             
             </ul>
-          <form class="nav navbar-form navbar-right">
+          <!--<form class="nav navbar-form navbar-right">
             <input type="text" class="form-control searchBook"  id="searchBooks" placeholder="Search...">
-          </form>
+          </form>-->
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>

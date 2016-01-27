@@ -13,7 +13,8 @@ Meteor.startup(function(){
                 isbn: "978-0670921607",
                 cover_url: "51pGzMiWpnL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Lean-Startup-Innovation-Successful-Businesses/dp/0670921602",
-                reservations: []               
+                reserved: false
+                                       
             },
             {
                 title: "The Cucumber Book",
@@ -22,7 +23,7 @@ Meteor.startup(function(){
                 isbn: "978-1934356807",
                 cover_url: "51dKVQPJolL.jpg",      
                 amazon_url: "http://www.amazon.co.uk/The-Cucumber-Book-Behaviour-Driven-Development/dp/1934356808",
-                reservations: []         
+                reserved: false         
             },
             {
                 title: "User Stories Applied",
@@ -31,7 +32,7 @@ Meteor.startup(function(){
                 isbn: "978-0321205681",
                 cover_url: "5139MMztLeL.jpg",
                 amazon_url: "http://www.amazon.co.uk/User-Stories-Applied-Development-Signature/dp/0321205685",
-                reservations: []               
+                reserved: false               
             },
             {
                 title: "Specification by example",
@@ -40,7 +41,7 @@ Meteor.startup(function(){
                 isbn: "978-1617290084",
                 cover_url: "41yUI84ASzL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Specification-Example-Successful-Deliver-Software/dp/1617290084",
-                reservations: []               
+                reserved: false               
             },
             {
                 title: "The Process Improvement Handbook",
@@ -49,7 +50,7 @@ Meteor.startup(function(){
                 isbn: "978-0071817660",
                 cover_url: "51SpGoTqafL.jpg",
                 amazon_url: "http://www.amazon.co.uk/The-Process-Improvement-Handbook-Organizational/dp/0071817662",
-                reservations: []               
+                reserved: false               
             },
             {
                 title: "Continuous Integration",
@@ -58,7 +59,7 @@ Meteor.startup(function(){
                 isbn: "978-0321336385",
                 cover_url: "51EiswnBCBL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Continuous-Integration-Improving-Software-Signature/dp/0321336380",
-                reservations: []               
+                reserved: false               
             },
             {
                 title: "Continuous Delivery",
@@ -67,7 +68,7 @@ Meteor.startup(function(){
                 isbn: "978-0321601919",
                 cover_url: "51NbiDn81NL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912",
-                reservations: []               
+                reserved: false               
             },
             {
                 title: "The Five Dysfunctions of a Team",
@@ -76,7 +77,7 @@ Meteor.startup(function(){
                 isbn: "978-0787960759",
                 cover_url: "51Ko3ORh-qL.jpg",
                 amazon_url: "http://www.amazon.co.uk/The-Five-Dysfunctions-Team-Leadership/dp/0787960756",
-                reservations: []               
+                reserved: false                
             },
             {
                 title: "Clean Code",
@@ -85,7 +86,7 @@ Meteor.startup(function(){
                 isbn: "978-0132350884",
                 cover_url: "51oXyW8WQwL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
-                reservations: []               
+                reserved: false                
             },
             {
                 title: "C# in depth",
@@ -94,7 +95,7 @@ Meteor.startup(function(){
                 isbn: "978-1935182474",
                 cover_url: "41Xefw6MD6L.jpg",
                 amazon_url: "http://www.amazon.co.uk/C-Depth-Jon-Skeet/dp/1935182471",
-                reservations: []               
+                reserved: false              
             },
             {
                 title: "Data Science and Big Data Analytics",
@@ -103,7 +104,7 @@ Meteor.startup(function(){
                 isbn: "978-1118876138",
                 cover_url: "51vTnLyX2DL.jpg",
                 amazon_url: "http://www.amazon.co.uk/Data-Science-Big-Analytics-Discovering/dp/111887613X",
-                reservations: []               
+                reserved: false     
             },
             {
                 title: "IOS Programming: The Big Nerd Ranch Guide",
@@ -112,7 +113,7 @@ Meteor.startup(function(){
                 isbn: "978-0321773777",
                 cover_url: "41Of8gMgn1L.jpg",
                 amazon_url: "http://www.amazon.co.uk/IOS-Programming-Ranch-Guide-Guides/dp/0321773772",
-                reservations: []               
+                reserved: false                          
             },
             {
                 title: "Don't Make Me Think! A Common Sense Approach to Web Usability",
@@ -121,21 +122,24 @@ Meteor.startup(function(){
                 isbn: "978-0321344755",
                 cover_url: "51Swm3TW72L.jpg",
                 amazon_url: "http://www.amazon.co.uk/Dont-Make-Me-Think-Usability/dp/0321344758",
-                reservations: []               
+                reserved: false                
             }
         ];      
         
         var timestamp = new Date().getTime();
-        _.each(data, function(list){
-            Books.insert({
-                title: list.title,
-                description: list.description,
-                author: list.author,
-                isbn: list.isbn,
-                cover_url: list.cover_url,
-                amazon_url: list.amazon_url,
-                reservations: list.reservations                
-            });        
+        _.each(data, function(listItem){
+            // Books.insert({
+            //     title: list.title,
+            //     description: list.description,
+            //     author: list.author,
+            //     isbn: list.isbn,
+            //     cover_url: list.cover_url,
+            //     amazon_url: list.amazon_url,
+            //                
+            // });
+            
+            Books.insert(listItem);
+                    
         });
       
     }

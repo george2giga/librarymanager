@@ -21,16 +21,7 @@ Template.myBooks.events({
         //http://stackoverflow.com/questions/30866537/meteor-mongo-updating-nested-array
        
         Meteor.call('releaseBook', this.reservation._id);
-        
-        sAlert.info(this.book.title + " returned");   
+        var notification = this.book.title + " returned";
+        sAlert.info(notification);   
     }
 })
-
-Template.myBooks.onRendered(function(){
-    // var booksMain = $('.mybooksMain');
-    // booksMain.imagesLoaded(function(){
-    //     booksMain.masonry({
-    //         itemSelector: ".mybookItem"            
-    //     });        
-    // });
-});

@@ -1,0 +1,22 @@
+<template name="whoGotWhat">
+<div class="animated fadeIn">    
+    <ul class="media-list">
+    {{#each reservationBooks}}
+    <li class="media">    
+        <div class="media-left">
+        <a href="#">
+            <img class="media-object whogotwhat" src="/images/{{book.cover_url}}" alt="{{book.title}}">
+        </a>
+        </div>
+        <div class="media-body">
+        <h4 class="media-heading">{{user.emails.[0].address}}</h4>
+        Booked on {{reservation.createdDate}}
+        </div>
+    </li>
+    {{/each}}
+    </ul>
+</div>
+</template>
+
+
+
